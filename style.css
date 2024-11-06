@@ -7,9 +7,7 @@
 html{
     font-size: 62.5%;
 }
-body {
-  overflow-x: hidden;
-}
+
 
 h1,
 h2,
@@ -375,7 +373,7 @@ main{
   }
 }
 & .container{
-  width: 142rem;
+  max-width: 142rem;
   margin: 0 auto;
   padding: 9.6rem 2.4rem;
 }
