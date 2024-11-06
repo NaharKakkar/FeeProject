@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizzy - Quiz Application</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6e5ea; /* Light shade of #d2a2ae for background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+      border: 2px solid #d2a2ae; /* Subtle border to match theme */
+    }
+
+    input[type="file"] {
+      margin: 10px 0;
+      display: none; /* Hide the file input */
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #d2a2ae; /* Primary color */
+      color: #fff; /* White text for contrast */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:disabled {
+      background-color: #e3c3cc; /* Lighter tone of #d2a2ae for disabled state */
+    }
+
+    button:hover {
+      background-color: #c18794; /* Slightly darker on hover */
+    }
+
+    .questions-container {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    /* Drag and drop styles */
+    #dropZone {
+      border: 2px dashed #d2a2ae;
+      padding: 20px;
+      margin-top: 20px;
+      color: #d2a2ae;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    #dropZone.dragging {
+      border-color: #c18794; /* Darker shade while dragging */
+      color: #c18794; /* Matching text color during drag */
+      background-color: #f3d8dd; /* Light pink background when dragging */
+    }
+
+    h1, h3 {
+      color: #7a5861; /* Darker shade of #d2a2ae for headers */
+    }
+
+    p {
+      color: #7a5861; /* Same for paragraph text */
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Welcome to Quizzy!</h1>
+    <p>Upload your file and get AI-generated questions based on it!</p>
+
+    <!-- Hidden file input for click fallback -->
+    <input type="file" id="fileInput">
+
+    <!-- Drag-and-drop zone -->
+    <div id="dropZone">Drag & Drop your file here or click to select</div>
+
+    <!-- Submit button -->
+    <button id="submitButton" disabled>Upload & Get Questions</button>
+
+    <!-- Output container -->
+    <div id="output" class="questions-container"></div>
+  </div>
+
+  <script>
+    // Select the elements
+    const fileInput = document.getElementById('fileInput');
+    const submitButton = document.getElementById('submitButton');
+    const outputDiv = document.getElementById('output');
+    const dropZone = document.getElementById('dropZone');
+    let selectedFile = null;
+
+    // Example: Array of predefined content and associated questions
+    const predefinedData = [
+      {
+        content: "abcdefghijklmnopqrstuvwxyz",
+        questions: [
+          "1. What is JavaScript?",
+          "2. How do you declare a variable in JavaScript?",
+          "3. Explain the difference between 'var', 'let', and 'const'.",
+          "4. What is the DOM?",
+          "5. How does event bubbling work in JavaScript?"
+        ]
+      },
+      {
+        content: "This file contains an introduction to Python programming language.",
+        questions: [
+          "1. What is Python?",
+          "2. How do you define a function in Python?",
+          "3. What are lists and tuples in Python?",
+          "4. Explain the concept of dictionaries in Python.",
+          "5. How do you handle exceptions in Python?"
+        ]
+      },
+      {
+        content: "This file discusses the fundamentals of HTML and CSS.",
+        questions: [
+          "1. What is HTML?",
+          "2. What are the common HTML tags?",
+          "3. How do you apply styles using CSS?",
+          "4. Explain the box model in CSS.",
+          "5. How can you position elements using CSS?"
+        ]
+      }
+    ];
+
+    // Listen for file selection via clicking the drop zone
+    dropZone.addEventListener('click', () => {
+      fileInput.click(); // Trigger hidden file input
+    });
+
+    // Listen for file selection via file input change
+    fileInput.addEventListener('change', function() {
+      if (fileInput.files.length > 0) {
+        selectedFile = fileInput.files[0];
+        submitButton.disabled = false; // Enable the button when a file is selected
+        dropZone.textContent = selectedFile.name; // Show file name in drop zone
+      }
+    });
+
+    // Handle drag and drop events
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragging'); // Add visual feedback for dragging
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('dragging'); // Remove dragging effect
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('dragging'); // Remove dragging effect
+
+      const file = e.dataTransfer.files[0]; // Get the dropped file
+      selectedFile = file;
+      submitButton.disabled = false; // Enable the button
+      dropZone.textContent = file.name; // Show the dropped file name
+    });
+
+    // Listen for button click to process the file
+    submitButton.addEventListener('click', function() {
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const content = e.target.result.trim().toLowerCase(); // Trim and lowercase
+        console.log("File Content:", content); // Debugging: log the content read from the file
+
+        // Find matching predefined content (case-insensitive match)
+        const matchedPredefined = predefinedData.find(item => 
+          content.includes(item.content.toLowerCase())
+        );
+
+        // Debugging: log the predefined contents being checked
+        console.log("Matching against predefined data:");
+        predefinedData.forEach(item => {
+          console.log("Checking:", item.content.toLowerCase());
+        });
+
+        if (matchedPredefined) {
+          displayQuestions(matchedPredefined.questions);
+        } else {
+          outputDiv.innerHTML = "<p>No questions found for this file.</p>";
+        }
+      };
+
+      if (selectedFile) {
+        reader.readAsText(selectedFile); // Read the content of the selected file
+      }
+    });
+
+    // Function to display questions
+    function displayQuestions(questions) {
+      let html = "<h3>Here are your questions:</h3><ul>";
+      questions.forEach(question => {
+        html += `<li>${question}</li>`;
+      });
+      html += "</ul>";
+      outputDiv.innerHTML = html;
+    }
+  </script>
+</body>
+</html>

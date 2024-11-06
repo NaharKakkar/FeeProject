@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aiGuru AI Assistant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Full-screen overlay for the AI */
+    .ai-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      font-size: 36px;
+      color: #555;
+      z-index: 9999;
+    }
+
+    /* Welcome text with step-based typing effect */
+    .line1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      overflow: hidden; /* Hide overflowing text */
+      border-right: 2px solid #555; /* Simulate a cursor */
+      white-space: nowrap; /* Prevent text wrapping */
+      width: 0; /* Initially set width to 0 */
+      animation: typing 3s steps(20) forwards, blink-caret 0.7s step-end infinite; /* Typing animation */
+    }
+
+    .highlight {
+      color: #d2a2ae; /* Different color for 'aiGuru' */
+    }
+
+    /* Line 2 appears after Line 1 finishes */
+    .line2 {
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+      animation-delay: 3s; /* Wait for Line 1 to finish */
+    }
+
+    /* Typing animation for 'Welcome to aiGuru' */
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 16ch; }
+    }
+
+    /* Blinking caret animation */
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #555; }
+    }
+
+    /* Fade-in effect for Line 2 */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Chat box hidden until animation finishes */
+    .chat-container {
+      display: none; /* Hidden initially */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-box {
+      width: 95vw;
+      height: 80vh;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      padding: 10px;
+      background-color: #f9f9f9;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .chat-box p {
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 5px;
+    }
+
+    .user {
+      background-color: #d2a2ae70;
+      text-align: right;
+    }
+
+    .bot {
+      background-color: #efefef;
+    }
+
+    .input-container {
+      display: flex;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      background-color: #d2a2ae;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background-color: #b08595;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Full-screen welcome overlay -->
+  <div class="ai-overlay" id="aiOverlay">
+    <div class="line1">Welcome to <span class="highlight">aiGuru</span></div>
+    <div class="line2">Ask AI anything</div>
+  </div>
+
+  <!-- Chat container -->
+  <div class="chat-container" id="chat-container">
+    <div class="chat-box" id="chat-box">
+      <!-- AI chat messages will be displayed here -->
+    </div>
+
+    <div class="input-container">
+      <input type="text" id="userInput" placeholder="Ask your question...">
+      <button onclick="getResponse()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Function to hide the welcome overlay and show the chat container
+    function showChat() {
+      const overlay = document.getElementById('aiOverlay');
+      const chatContainer = document.getElementById('chat-container');
+      
+      // Apply fade out to overlay
+      overlay.classList.add('fade-out');
+
+      // Wait for the fade-out animation to finish
+      setTimeout(function () {
+        overlay.style.display = 'none'; // Hide overlay
+        chatContainer.style.display = 'block'; // Show chat container
+      }, 5000); // Wait for 5 seconds (line 1 + line 2 animations)
+    }
+
+    // Trigger the animation and chat opening after a delay (simulating the Open AI button click)
+    window.onload = function() {
+      setTimeout(showChat, 500); // 5 seconds delay to allow both lines to animate
+    };
+
+    // Predefined AI responses
+    const aiResponses = {
+      "Hii": "Hi there! How can I assist you today?",
+      "Thanks": "You're very welcome! 😊 Let me know if there's anything you need help with.",
+      "What is Newton's First Law of Motion?": "An object will remain at rest or in uniform motion unless acted upon by an external force.",
+      "Why do objects float in water?": "Objects float if their density is less than that of water",
+      "What is the unit of electric current?": "Ampere (A)",
+      "What is the principle of conservation of energy?": "Energy cannot be created or destroyed, only transformed from one form to another.",
+      "What causes a rainbow?": "Refraction, dispersion, and reflection of light in water droplets.",
+      "Why does ice float on water?": "Ice is less dense than liquid water because its molecules are arranged in a way that creates more open space.",
+      "Why does sound travel faster in water than in air?": "Sound travels faster in water because particles in liquids are closer together, allowing vibrations to transfer more quickly.",
+      "Why does boiling water cool down faster if you blow on it?": "Blowing removes warm air above the water and brings in cooler air, speeding up evaporation and cooling.",
+    };
+
+    function getResponse() {
+      const userInput = document.getElementById("userInput").value;
+      const chatBox = document.getElementById("chat-box");
+
+      // Add user's question to the chat
+      const userMessage = document.createElement("p");
+      userMessage.classList.add("user");
+      userMessage.textContent = userInput;
+      chatBox.appendChild(userMessage);
+
+      // Find AI response or fallback message
+      const response = aiResponses[userInput] || "Sorry, I don't have an answer to that.";
+
+      // Create bot message element
+      const botMessage = document.createElement("p");
+      botMessage.classList.add("bot");
+      chatBox.appendChild(botMessage);
+
+      // Scroll chat box to the bottom
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Type out the response word by word
+      typeResponse(botMessage, response);
+
+      // Clear input field
+      document.getElementById("userInput").value = '';
+    }
+
+    function typeResponse(element, text) {
+      let i = 0;
+      const typingSpeed = 50; // Speed of typing in milliseconds (you can adjust it)
+      element.textContent = '';
+
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, typingSpeed); // Recursively call type() for the next character
+        }
+      }
+      type(); // Start typing
+    }
+  </script>
+
+</body>
+</html>

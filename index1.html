@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+<body>
+
+    <!-- Start navbar section -->
+    <header class="section-navbar">
+      <div class="container">
+          <div class="navbar-brand">
+              <a href="index.html">
+                  <img 
+                  src="./images/logo.webp" 
+                  alt="Quizzy Logo"
+                  />
+          </a>
+          </div> 
+          <nav class="navbar">
+              <ul class="nav-links" id="nav-links">
+                  <li class="navitem">
+                      <a href="index1.html" data-content="Home" class="navlink">Home</a>
+                  </li>
+                  <li class="navitem">
+                      <a href="about1.html" data-content="About" class="navlink">About</a>
+                  </li>
+                  <li class="navitem">
+                      <a href="courses1.html" data-content="Courses" class="navlink">Courses</a>
+                  </li>
+                  <li class="navitem">
+                      <a href="services1.html" data-content="Services" class="navlink">Services</a>
+                  </li>
+                  <li class="navitem">
+                      <a href="contact1.html" data-content="Contact Us" class="navlink">Contact Us</a>
+                  </li>
+              </ul>
+          </nav>
+          
+          <!-- Hamburger Menu Button -->
+          <div class="hamburger" id="hamburger">
+              <i class="fas fa-bars"></i>
+          </div>
+      </div>
+    </header>
+         <!-- End navbar section -->
+  
+         <!-- Side Menu for Hamburger -->
+         <div class="side-menu" id="side-menu">
+             <div class="close-btn" id="close-btn">
+                 <i class="fas fa-times"></i>
+             </div>
+             <ul class="side-nav-links">
+                 <li class="side-navitem">
+                     <a href="index.html1" data-content="Home" class="side-navlink">Home</a>
+                 </li>
+                 <li class="side-navitem">
+                     <a href="about.html1" data-content="About" class="side-navlink">About</a>
+                 </li>
+                 <li class="side-navitem">
+                     <a href="courses.html1" data-content="Courses" class="side-navlink">Courses</a>
+                 </li>
+                 <li class="side-navitem">
+                     <a href="services.html1" data-content="Services" class="side-navlink">Services</a>
+                 </li>
+                 <li class="side-navitem">
+                     <a href="contact.html1" data-content="Contact Us" class="side-navlink">Contact Us</a>
+                 </li>
+             </ul>
+             
+         </div>
+  
+         <!-- Overlay -->
+         <div class="overlay" id="overlay"></div>
+
+       <!-- Start Hero Section  -->
+<main>
+    <div class="section-hero">
+        <div class="container grid grid-two--cols">
+            <div class="section-hero--content">
+                <p class="hero-subheading">Challenge Your Intellect</p>
+            <h1 class="hero-heading">Test Your Knowledge, Learn Smarter</h1>
+            <p class="hero-para">Test your knowledge with Quizzy! Dive into fun and interactive quizzes, track your progress, and learn something new every day. Start your journey to smarter learning now!</p>
+            <div class="hero-btn">
+                <a href="services.html" class="btn btn-white">Learn with us</a>
+              </div>
+            </div>
+            <div class="section-hero--image">
+                <figure data-aos="fade-right" data-aos-duration="700">
+                    <img 
+                    src="./images/hero-section.webp" 
+                    alt="Laptop with learning materials, books, and charts" 
+                    />
+                </figure>
+                
+            </div>
+        </div>
+    </div>
+    <div class="custom-shape-divider-bottom-1728212325">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+        </svg>
+    </div>
+</main>
+
+<!-- End Hero Section  -->
+
+<!-- start about section  -->
+ <section class="section-about">
+    <div class="container">
+        <h2 class="section-common-heading">About Quizzy</h2>
+        <p class="section-common-subheading">Guiding your learinng journey through various features</p>
+    </div>
+
+    <div class="container grid grid-three--cols">
+        <div class="about-div" data-aos="fade-up">
+          <div class="icon">
+            <img src="images/bookAi.webp" alt="Uploading of file" />
+          </div>
+          <h3 class="section-common--title">book-based quizzes</h3>
+          <p>
+           Upload book content or pdf on the AI to generate quizzes based on your needs
+          </p>
+        </div>
+
+        <div class="about-div" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon">
+            <img src="images/askAI.webp" alt="AI robot image" />
+          </div>
+          <h3 class="section-common--title">personal ai assistant</h3>
+          <p>
+            We provide a personal AI assistant to answer your doubts
+          </p>
+        </div>
+
+        <div class="about-div" data-aos="fade-up" data-aos-delay="600">
+          <div class="icon">
+            <img src="images/one_on_one_competetion.webp" alt="competition trophy on books " />
+          </div>
+          <h3 class="section-common--title">one-on-one competetion</h3>
+          <p>
+          Challenge friends to head-to-head competetions on various topics
+          </p>
+        </div>
+    </div>
+ </section>
+
+<!-- end about section  -->
+
+
+<!-- start courses section -->
+<section class="section-course">
+    <div class="container" data-aos="fade-right" data-aos-duration="500">
+      <h2 class="section-common-heading">Explore Our Courses</h2>
+      <p class="section-common-subheading">
+        Discover a variety of courses across different categories.
+      </p>
+    </div>
+
+    <div class="container grid grid-four--cols" data-aos="fade-left" data-aos-duration="500">
+      <div class="course-div">
+        <div class="images">
+          <img src="./images/maths.webp" alt="">
+        </div>
+        <h3 class="section-common--title">Mathematics</h3>
+        <p>
+            Mathematics is the study of numbers, patterns, and logic
+        </p>
+      </div>
+
+      <div class="course-div">
+        <div class="images">
+          <img src="./images/physics.webp" alt="">
+        </div>
+        <h3 class="section-common--title">physics</h3>
+        <p>
+            Physics explains the laws governing matter, energy, and motion.
+        </p>
+      </div>
+
+      <div class="course-div">
+        <div class="images">
+          <img src="./images/chemistry.webp" alt="">
+        </div>
+        <h3 class="section-common--title">chemistry</h3>
+        <p>Powerful, efficient coding language for software development.</p>
+      </div>
+
+      <div class="course-div">
+        <div class="images">
+          <img src="./images/biology.webp" alt="">
+        </div>
+        <h3 class="section-common--title">biology</h3>
+        <p>Biology is the study of living organisms and their interactions.</p>
+      </div>
+    </div>
+  </section>
+ <!-- end courses section -->
+
+ <!-- start why choose section  -->
+ <section class="section-why--choose">
+  <div class="container">
+    <h2 class="section-common-heading">Why Choose Quizzy</h2>
+    <p class="section-common-subheading">
+      Quizzy offers a fun and interactive way to master new subjects, with personalized quizzes designed just for you.
+    </p>
+  </div>
+
+  <div class="container grid grid-three--cols">
+      <div class="choose-left--div text-align--right">
+
+        <div class="why-choose--div">
+          <p class="common-text--highlight">1</p>
+          <h3 class="section-common--title">Diverse and Engaging Content</h3>
+          <p>
+            Our platform offers a wide range of quizzes across various subjects. Whether you’re looking to challenge your knowledge or just have fun, we have something for everyone.
+          </p>
+        </div>
+
+        <div
+        class="why-choose--div"
+        data-aos="zoom-in-up"
+        data-aos-delay="300"
+      >
+        <p class="common-text--highlight">2</p>
+        <h3 class="section-common--title">User-Friendly and Accesible</h3>
+        <p>
+          Our website is designed to be accessible on all devices, ensuring a seamless experience whether you're on your computer, tablet, or smartphone
+        </p>
+      </div>
+
+      
+
+    </div>
+
+      <!--? center part of image  -->
+
+      <div class="choose-center--div" data-aos="zoom-in">
+        <figure>
+          <img src="./images/phoneFrame.webp" alt="quizzy phone version image ">
+        </figure>
+      </div>
+
+      <!--? right side the content  -->
+      <div class="choose-right--div text-align--left">
+
+        <div class="why-choose--div">
+          <p class="common-text--highlight">3</p>
+          <h3 class="section-common--title">Educational Value</h3>
+          <p>
+            Enhance your knowledge with quizzes designed by educators and experts. Our app not only entertains but also educates, making it a valuable tool for learning and self-improvement.
+          </p>
+        </div>
+
+        <div
+        class="why-choose--div text-align--left"
+        data-aos="zoom-in-up"
+        data-aos-delay="300"
+      >
+        <p class="common-text--highlight">4</p>
+        <h3 class="section-common--title">Feedback and Support</h3>
+        <p>
+          Our platform offers a wide range of quizzes across various subjects. Whether you’re looking to challenge your knowledge or just have fun, we have something for everyone.
+        </p>
+      </div>
+
+     
+  </div>
+  </section>
+  
+
+  <!-- end why choose section  -->
+
+ <!-- start contact home section  -->
+ <div class="section-contact--homepage" id="section-contact--homepage">
+    <div class="container grid grid-two--cols">
+      <div class="contact-content">
+        <h2 class="contact-title">Let's revolutionize the way you study</h2>
+        <p>Join our free bootcamps to know us better</p>
+        <div class="btn">
+          <a href="contact.html">
+            start now <i class="fa-solid fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="contact-image">
+        <img src="images/Online_Course.webp" alt="a guy teaching online image">
+      </div>
+    </div>
+  </div>
+  <!-- end contact home section  -->
+
+   <!-- start footer section  -->
+   <footer>
+    <div class="container grid grid-four--cols">
+      <div class="footer-1--div">
+        <div class="logo-brand">
+          <a href="index1.html" class="footer-subheading">Quizzy</a>
+        </div>
+        <p>Let's revolutionize the way you study with Quizzy.</p>
+     
+        <div class="social-footer--icons">
+          <a href="https://www.facebook.com" target="_blank" aria-label="Quizzy Facebook" >
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.youtube.com" target="_blank" aria-label="Quizzy YouTube" >
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" aria-label="Quizzy Instagram" >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-2--div">
+        <p class="footer-subheading">Courses</p>
+          <ul>
+            <li><a href="#mathematics">Mathematics</a></li>
+            <li><a href="#physics">Physics</a></li>
+            <li><a href="#chemistry">Chemistry</a></li>
+            <li><a href="#biology">Biology</a></li>
+          </ul>
+      </div>
+
+      <div class="footer-3--div">
+        <p class="footer-subheading">Links</p>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+      </div>
+
+      <div class="footer-4--div">
+        <p class="footer-subheading">Blogs</p>
+          <ul>
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">Web Dev</a></li>
+            <li><a href="#">AI in Education</a></li>
+          </ul>
+      </div>
+      
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Quizzy. All rights reserved.</p>
+    </div>
+</footer>
+
+    <!-- end footer section  -->
+
+  
+    
+    
+    <!-- JavaScript for Hamburger Menu -->
+    <script>
+      const hamburger = document.getElementById('hamburger');
+      const sideMenu = document.getElementById('side-menu');
+      const closeBtn = document.getElementById('close-btn');
+      const overlay = document.getElementById('overlay');
+
+      hamburger.addEventListener('click', () => {
+          sideMenu.classList.add('active');
+          overlay.classList.add('active');
+      });
+
+      closeBtn.addEventListener('click', () => {
+          sideMenu.classList.remove('active');
+          overlay.classList.remove('active');
+      });
+
+      overlay.addEventListener('click', () => {
+          sideMenu.classList.remove('active');
+          overlay.classList.remove('active');
+      });
+  </script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
