@@ -237,10 +237,6 @@ padding: .8rem .8rem;
   color: #d2a2ae;
 }
 
-
-
-
-
 /* Overlay Styles */
 .overlay {
   position: fixed;
@@ -256,13 +252,6 @@ padding: .8rem .8rem;
 .overlay.active {
   width: 50%;
 }
-
-
- 
-  
-
-
-
 
 /* End navbar Section */
 
